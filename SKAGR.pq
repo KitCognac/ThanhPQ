@@ -25,8 +25,9 @@ let
         #"Changed Type with Locale2" = Table.TransformColumnTypes(#"Renamed Columns2", {{"Ngày hạch toán", type date}}, "en-GB"),
         #"Removed Columns" = Table.RemoveColumns(#"Changed Type with Locale2",{"Ngày hạch toán gốc"}),
         #"Added Index" = Table.AddIndexColumn(#"Removed Columns", "Index", 1, 1, Int64.Type),
-        #"Renamed Columns3" = Table.RenameColumns(#"Added Index",{{"Index", "Số chứng từ (STT bank)"}})
+        #"Renamed Columns3" = Table.RenameColumns(#"Added Index",{{"Index", "Số chứng từ (STT bank)"}}),
+        #"Added Custom4" = Table.AddColumn(#"Renamed Columns3", "Chó tuấn", each [STT])
     in
-        #"Renamed Columns3"
+        #"Added Custom4"
 in
     Source
